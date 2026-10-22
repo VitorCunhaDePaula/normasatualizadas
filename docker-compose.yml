@@ -1,0 +1,20 @@
+# MySQL de teste (ARCHITECTURE.md §3/§5). Credenciais iguais às do .env.
+services:
+  db:
+    image: mysql:8.4
+    container_name: normas-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_dev
+      MYSQL_DATABASE: normas_atualizadas
+      MYSQL_USER: normas
+      MYSQL_PASSWORD: normas_dev
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - normas_mysql_data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+
+volumes:
+  normas_mysql_data:
