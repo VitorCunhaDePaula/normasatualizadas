@@ -50,7 +50,7 @@ async function Tabelas({ searchParams }: { searchParams: PageProps<"/dashboard">
     <>
       {/* Telas maiores: 20 por página. */}
       <div className="hidden sm:block">
-        <ul className="grid grid-cols-3 gap-[22px] md:grid-cols-4 lg:grid-cols-5">
+        <ul className="grid grid-cols-3 gap-[22px] md:grid-cols-4 lg:max-w-[1100px] lg:grid-cols-5">
           {grande.items.map((t) => (
             <li key={t.id}>
               <TabelaCard tabela={t} />

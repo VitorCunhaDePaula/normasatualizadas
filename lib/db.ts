@@ -30,6 +30,8 @@ export type Filtro = {
   id: string;
   rotulo: string;
   tipo: "select" | "radio";
+  /** Select que começa vazio, com este texto como primeira opção; sem isso, abre na primeira opção. */
+  placeholder?: string;
   opcoes: FiltroOpcao[];
 };
 export type Variantes = {

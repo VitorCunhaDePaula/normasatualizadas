@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #12181b;
-  --foreground: #e8eeee;
+  --background: #f0f0f0;
+  --foreground: #1c2434;
+  /* Só tema claro: o app não segue o modo escuro do sistema. */
+  color-scheme: light;
 }
 
 @theme inline {
@@ -13,8 +15,6 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-figtree), system-ui, sans-serif;
 }
 
@@ -39,7 +39,7 @@ body {
   }
 }
 
-/* Tema da área interna (/dashboard): claro por padrão, escuro conforme o sistema. O login não usa estas variáveis. */
+/* Tema da área interna (/dashboard): sempre claro, mesmas cores do protótipo. O login não usa estas variáveis. */
 .app-theme {
   --app-bg: #f0f0f0;
   --app-card: #fff;
@@ -56,21 +56,6 @@ body {
   color-scheme: light;
   background: var(--app-bg);
   color: var(--app-ink);
-}
-
-@media (prefers-color-scheme: dark) {
-  .app-theme {
-    --app-bg: #121719;
-    --app-card: #1b2326;
-    --app-ink: #e8eef0;
-    --app-mute: #9aa8ae;
-    --app-green: #7fd8c6;
-    --app-mint: #1f4d47;
-    --app-soft: #182a2b;
-    --app-line: #2c383c;
-    --app-info: #14283a;
-    color-scheme: dark;
-  }
 }
 
 @font-face {
@@ -140,5 +125,12 @@ body {
 
   .font-lyon-bold {
     font-family: "Lyon Bold", sans-serif;
+  }
+}
+
+@layer base {
+  h1,
+  h2 {
+    color: #1c2434;
   }
 }

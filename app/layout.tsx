@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Figtree, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
@@ -18,10 +18,14 @@ export const metadata: Metadata = {
   title: "Normas Atualizadas | Hogrefe",
   description: "Acesso às normas atualizadas dos testes Hogrefe",
   icons: {
-    icon: { url: "/icon2.webp", type: "image/webp" },
-    shortcut: "/icon2.webp",
-    apple: "/icon2.webp",
+    icon: { url: "/icon.webp", type: "image/webp" },
+    shortcut: "/icon.webp",
+    apple: "/icon.webp",
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -30,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`${figtree.variable} ${sourceSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#f0f0f0] text-[#1c2434]">
         <Providers>{children}</Providers>
       </body>
     </html>

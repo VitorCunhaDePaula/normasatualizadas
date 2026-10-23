@@ -24,20 +24,21 @@ const isOmega = (row: string[]) => row[0]?.startsWith("Ω");
 export default function TabelaView({ colunas, linhas, variantes, nota }: Props) {
   const filtros = variantes?.filtros ?? [];
   const [selecao, setSelecao] = useState<Record<string, string>>(() =>
-    Object.fromEntries(filtros.map((f) => [f.id, f.opcoes[0]?.valor ?? ""])),
+    Object.fromEntries(filtros.map((f) => [f.id, f.placeholder ? "" : (f.opcoes[0]?.valor ?? "")])),
   );
   const [active, setActive] = useState<number | null>(null);
   const [moreRight, setMoreRight] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const atual = useMemo(() => {
-    if (!variantes) return { colunas, linhas };
+    // Sem variantes, ou com algum filtro ainda em "Selecione": a tabela padrão da tabela.
+    if (!variantes || filtros.some((f) => !selecao[f.id])) return { colunas, linhas };
     return (
       variantes.tabelas.find((t) =>
         Object.entries(t.selecao).every(([k, v]) => selecao[k] === v),
       ) ?? null
     );
-  }, [variantes, selecao, colunas, linhas]);
+  }, [variantes, selecao, colunas, linhas]); // eslint-disable-line react-hooks/exhaustive-deps -- filtros deriva de variantes
 
   const updateShadow = useCallback(() => {
     const el = scrollRef.current;
@@ -82,7 +83,7 @@ export default function TabelaView({ colunas, linhas, variantes, nota }: Props) 
         >
           {filtros.map((f) =>
             f.tipo === "select" ? (
-              <div key={f.id}>
+              <div key={f.id} className={filtros.length === 1 ? "max-w-[260px]" : undefined}>
                 <label htmlFor={`filtro-${f.id}`} className={labelCls}>
                   {f.rotulo}
                 </label>
@@ -92,6 +93,7 @@ export default function TabelaView({ colunas, linhas, variantes, nota }: Props) 
                   onChange={(e) => escolher(f.id, e.target.value)}
                   className={controlCls}
                 >
+                  {f.placeholder && <option value="">{f.placeholder}</option>}
                   {f.opcoes.map((o) => (
                     <option key={o.valor} value={o.valor}>
                       {o.rotulo}
@@ -170,8 +172,8 @@ export default function TabelaView({ colunas, linhas, variantes, nota }: Props) 
                                 c < 2 ? "text-left" : ""
                               } ${c === 0 ? "sticky left-0 z-[1]" : ""} ${
                                 on
-                                  ? `bg-white font-semibold ${omega ? "text-[#c0172b]" : "text-(--app-navy)"}`
-                                  : `bg-(--app-navy) ${omega ? "font-semibold text-[#ff9b9b]" : ""}`
+                                  ? `bg-white font-semibold ${omega ? "text-[#c0172b]" : "text-[#12294a]"}`
+                                  : `${c === 0 ? "bg-(--app-navy)" : ""} ${omega ? "font-semibold text-[#ff9b9b]" : ""}`
                               }`}
                             >
                               <span
@@ -197,14 +199,14 @@ export default function TabelaView({ colunas, linhas, variantes, nota }: Props) 
               />
             </div>
           ) : (
-            <p className="rounded-[10px] bg-(--app-navy) p-6 text-[#e9f0fa]">
+            <p className="rounded-[10px] border border-(--app-line) bg-(--app-card) p-6 text-(--app-ink)">
               Sem dados para esta combinação.
             </p>
           )}
           {nota && <p className="mt-3 text-[12.5px] text-(--app-mute)">{nota}</p>}
         </div>
 
-        <aside className="font-akkurat-light rounded-[10px] bg-(--app-info) p-[18px] text-[13.5px]">
+        <aside className="font-akkurat-light rounded-[10px] border border-(--app-line) bg-(--app-info) p-[18px] text-[13.5px]">
           <h2 className="font-akkurat-bold mb-2 text-[15px]">Visualização protegida</h2>
           <p className="mb-2.5">As normas são exibidas apenas na linha selecionada.</p>
           <p>

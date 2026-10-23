@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-// O logo.webp é preto; no card escuro do login ele é invertido para branco.
+// O logo.webp é preto; o card do login é branco, então ele é usado sem filtro.
 export default function Logo() {
   return (
     <Image
@@ -9,7 +9,7 @@ export default function Logo() {
       width={282}
       height={68}
       priority
-      className="mx-auto h-9 w-auto brightness-0 invert sm:h-10"
+      className="mx-auto h-9 w-auto sm:h-10"
     />
   );
 }

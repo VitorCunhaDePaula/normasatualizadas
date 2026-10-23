@@ -10,7 +10,7 @@ export default function PasswordRules({
 }) {
   const colors =
     tone === "dark"
-      ? { idle: "text-[#8a9a9e]", ok: "text-[#5fd4b8]" }
+      ? { idle: "text-[#6b7680]", ok: "text-[#0f5c4f]" }
       : { idle: "text-(--app-mute)", ok: "text-(--app-green)" };
 
   return (

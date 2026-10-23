@@ -7,7 +7,7 @@ export default async function InternalHeader() {
   const name = session.user.name ?? "Usuário";
 
   return (
-    <header className="bg-(--app-card)">
+    <header className="border-b border-(--app-line) bg-(--app-card)">
       <div className="mx-auto flex min-h-[66px] w-full max-w-[1400px] flex-wrap items-center justify-between gap-x-4 gap-y-1 py-2 pr-3 pl-5 sm:pr-6 sm:pl-8">
         <a
           href="https://hogrefe.com.br/"

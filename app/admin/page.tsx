@@ -1,7 +1,17 @@
+import { Suspense } from "react";
 import { requireSession } from "@/lib/session";
 
-export default async function AdminPage() {
+async function Protegido() {
   await requireSession();
+  return null;
+}
 
-  return <main />;
+export default function AdminPage() {
+  return (
+    <main>
+      <Suspense fallback={null}>
+        <Protegido />
+      </Suspense>
+    </main>
+  );
 }

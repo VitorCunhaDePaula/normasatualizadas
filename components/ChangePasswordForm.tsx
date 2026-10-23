@@ -105,7 +105,7 @@ export default function ChangePasswordForm() {
           role={status.kind === "error" ? "alert" : "status"}
           className={`font-akkurat-regular rounded-lg px-3 py-2 text-sm ${
             status.kind === "error"
-              ? "bg-[#fdecec] text-[#a11b1b] dark:bg-[#3a1f22] dark:text-[#ffb4b4]"
+              ? "bg-[#fdecec] text-[#b3261e]"
               : "bg-(--app-soft) text-(--app-green)"
           }`}
         >

@@ -8,7 +8,7 @@ async function Conta() {
   const { user } = await requireSession();
 
   return (
-    <section className="rounded-[14px] bg-(--app-card) p-5 shadow-[0_1px_4px_rgba(0,0,0,.06)] sm:px-7 sm:py-[26px]">
+    <section className="rounded-[14px] border border-(--app-line) bg-(--app-card) p-5 shadow-[0_1px_4px_rgba(0,0,0,.06)] sm:px-7 sm:py-[26px]">
       <h1 className="font-lyon-semibold text-2xl leading-[1.1] sm:text-[30px]">Configurações</h1>
       <dl className="mt-5 grid gap-4 sm:grid-cols-[max-content_1fr] sm:gap-x-8">
         <dt className="font-akkurat-light text-sm text-(--app-mute)">Nome</dt>

@@ -13,7 +13,7 @@ async function Conteudo({ params }: { params: PageProps<"/dashboard/[slug]">["pa
   if (!tabela) notFound();
 
   return (
-    <section className="rounded-[14px] bg-(--app-card) p-5 shadow-[0_1px_4px_rgba(0,0,0,.06)] sm:px-7 sm:py-[26px]">
+    <section className="rounded-[14px] border border-(--app-line) bg-(--app-card) p-5 shadow-[0_1px_4px_rgba(0,0,0,.06)] sm:px-7 sm:py-[26px]">
       <div className="mb-[22px] flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           <h1 className="font-lyon-semibold text-2xl leading-[1.1] wrap-break-word sm:text-[30px]">{tabela.titulo}</h1>
